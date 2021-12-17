@@ -1,0 +1,17 @@
+Package: StatComp21038
+Type: Package
+Title: Bayesian Lasso Regression function
+Version: 1.0
+Date: 2021-12-16
+Author: Lifeng Liu
+Maintainer: Lifeng Liu <cqllfustc@mail.ustc.edu.cn>
+Description: This package write a BayesianLasso function to solve the Bayesian Lasso Regression Problem by gibbs sampling.
+License: GPL (>= 2)
+Imports: Rcpp (>= 1.0.7), MASS, mvtnorm, pscl, statmod, monomvn, stats, graphics, boot, bootstrap, energy, Ball, RANN, datasets, parallel, microbenchmark
+LinkingTo: Rcpp
+Suggests: knitr, rmarkdown
+VignetteBuilder: knitr
+RoxygenNote: 7.1.2
+Encoding: UTF-8
+URL: http://github.com/USTCLifengLiu/StatComp 
+BugReports: http://github.com/USTCLifengLiu/StatComp/issues 

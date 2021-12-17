@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="Lifeng Liu" />
+
+<meta name="date" content="2021-12-18" />
+
+<title>Introduction</title>
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Introduction</h1>
+<h4 class="author">Lifeng Liu</h4>
+<h4 class="date">2021-12-18</h4>
+
+
+
+<div id="overview" class="section level2">
+<h2>Overview</h2>
+<p><strong>StatComp21038</strong> is a R package that can help us solve the problem of Bayesian Lasso Regression. We refer to the article of “Park, Trevor, and George Casella. ‘The bayesian lasso.’ Journal of the American Statistical Association 103.482 (2008): 681-686” and complete this function <strong>BayesianLasso</strong> (we can get the median of beta’s posterior, and regard it the estimate of beta). What’s more? We complete some functions such as <strong>sumC</strong>, <strong>Q</strong>, <strong>EB</strong>(the empirical bayes method to get the lambda in this article) and <strong>HP</strong>(hyperprior method to get the lambda in this article) in C++ in order to make the function faster.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(StatComp21038)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">data</span>(<span class="st">&quot;Data&quot;</span>)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">attach</span>(Data)</a></code></pre></div>
+</div>
+<div id="sumc" class="section level2">
+<h2>sumC</h2>
+<p>This function is to sum the total value of a vector, and the C++ code is as follows:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">double <span class="kw">sumC</span> (NumericVector x, int p){</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">  double total =<span class="st"> </span><span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">  <span class="cf">for</span>(int <span class="dt">i=</span><span class="dv">0</span>; i <span class="op">&lt;</span><span class="st"> </span>p; i<span class="op">++</span>){</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">    total <span class="op">+</span><span class="er">=</span><span class="st"> </span>x[i];</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">  }</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">  return total;</a>
+<a class="sourceLine" id="cb2-7" data-line-number="7">}</a></code></pre></div>
+</div>
+<div id="loglikeli" class="section level2">
+<h2>loglikeli</h2>
+<p>This function is the logliklihood function of lambda, we use it when E == T (use the empirical bayes method ). The C++ code is as follows:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">double <span class="kw">loglikeli</span>(double lambda, NumericVector tauinv2, int p) {</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">    <span class="kw">return</span>(p<span class="op">*</span><span class="kw">log</span>(<span class="kw">pow</span>(lambda,<span class="dv">2</span>))<span class="op">-</span><span class="kw">pow</span>(lambda,<span class="dv">2</span>)<span class="op">/</span><span class="dv">2</span><span class="op">*</span><span class="kw">sumC</span>(<span class="dv">1</span><span class="op">/</span>tauinv2,p));</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">}</a></code></pre></div>
+</div>
+<div id="empiricalbayes" class="section level2">
+<h2>EmpiricalBayes</h2>
+<p>This function is to generate lambda using empirical bayes method which is introduced in Park, Trevor, and George Casella. “The bayesian lasso.” Journal of the American Statistical Association 103.482 (2008): 681-686. The C++ code is as follows:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">NumericVector <span class="kw">EmpiricalBayes</span>(double L0, double tol, NumericVector tauinv2, int p, double lambda){</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">    NumericVector <span class="kw">value</span>(<span class="dv">2</span>);</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">    double lambda1;</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">    double lambda2;</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">    double L1;</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">    double L2;</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">    lambda1 =<span class="st"> </span><span class="kw">sqrt</span>((p<span class="op">*</span><span class="dv">2</span>)<span class="op">/</span><span class="kw">sumC</span>(<span class="dv">1</span><span class="op">/</span>tauinv2,p));</a>
+<a class="sourceLine" id="cb4-8" data-line-number="8">    L1 =<span class="st"> </span><span class="kw">Q</span>(lambda,tauinv2,p);</a>
+<a class="sourceLine" id="cb4-9" data-line-number="9">    <span class="cf">if</span>(<span class="kw">abs</span>(L0<span class="op">-</span>L1)<span class="op">&gt;</span>tol){</a>
+<a class="sourceLine" id="cb4-10" data-line-number="10">        lambda2 =<span class="st"> </span>lambda1;</a>
+<a class="sourceLine" id="cb4-11" data-line-number="11">        L2 =<span class="st"> </span>L1;</a>
+<a class="sourceLine" id="cb4-12" data-line-number="12">    }</a>
+<a class="sourceLine" id="cb4-13" data-line-number="13">    <span class="cf">else</span>{</a>
+<a class="sourceLine" id="cb4-14" data-line-number="14">        lambda2 =<span class="st"> </span>lambda;</a>
+<a class="sourceLine" id="cb4-15" data-line-number="15">        L2 =<span class="st"> </span>L0;</a>
+<a class="sourceLine" id="cb4-16" data-line-number="16">    }</a>
+<a class="sourceLine" id="cb4-17" data-line-number="17">    value[<span class="dv">0</span>]=lambda2;</a>
+<a class="sourceLine" id="cb4-18" data-line-number="18">    value[<span class="dv">1</span>]=L2;</a>
+<a class="sourceLine" id="cb4-19" data-line-number="19">    <span class="kw">return</span>(value);</a>
+<a class="sourceLine" id="cb4-20" data-line-number="20">}</a></code></pre></div>
+</div>
+<div id="hyperpirorbayes" class="section level2">
+<h2>HyperpirorBayes</h2>
+<p>This function is to generate lambda using hyperprior method. The C++ code is as follows:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">double <span class="kw">HyperpriorBayes</span>(NumericVector tauinv2, int r, int d, int p){</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">    double lambda2;</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">    int sh;</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">    double sc;</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">    sh =<span class="st"> </span>p<span class="op">+</span>r;</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">    sc =<span class="st"> </span><span class="kw">sumC</span>(<span class="dv">1</span><span class="op">/</span>tauinv2,p)<span class="op">/</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>d;</a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">    lambda2 =<span class="kw">sqrt</span>(<span class="kw">rgamma</span>(<span class="dv">1</span>, sh, sc)[<span class="dv">0</span>]);</a>
+<a class="sourceLine" id="cb5-8" data-line-number="8">    <span class="kw">return</span>(lambda2);</a>
+<a class="sourceLine" id="cb5-9" data-line-number="9">}</a></code></pre></div>
+</div>
+<div id="bayesianlasso" class="section level2">
+<h2>BayesianLasso</h2>
+<p>The parameter center=T and scale=T means the data has already been centered and scaled and do not need to be centered and scaled anymore. The R code of this function is as follows:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">BayesianLasso&lt;-<span class="cf">function</span>(x,y,<span class="dt">center =</span> T, <span class="dt">scale =</span> T,<span class="dt">n.max=</span><span class="dv">10000</span>,<span class="dt">E=</span><span class="ot">TRUE</span>,<span class="dt">r=</span><span class="dv">1</span>,<span class="dt">d=</span><span class="dv">1</span>){</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">  <span class="co">#beginning</span></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">  <span class="kw">require</span>(<span class="st">&quot;MASS&quot;</span>)    <span class="co"># for the inverse of matrix</span></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4">  <span class="kw">require</span>(<span class="st">&quot;mvtnorm&quot;</span>) <span class="co">#multivarate normal</span></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5">  <span class="kw">require</span>(<span class="st">&quot;pscl&quot;</span>)    <span class="co">#inverse gamma</span></a>
+<a class="sourceLine" id="cb6-6" data-line-number="6">  <span class="kw">require</span>(<span class="st">&quot;statmod&quot;</span>) <span class="co">#inverse gaussian </span></a>
+<a class="sourceLine" id="cb6-7" data-line-number="7">  <span class="kw">require</span>(<span class="st">&quot;Rcpp&quot;</span>)    <span class="co">#for we can use cpp function in the function</span></a>
+<a class="sourceLine" id="cb6-8" data-line-number="8">  <span class="co">#sourceCpp(paste0(&quot;//Users/apple/Desktop/StatComp/src/&quot;,&quot;StatComp.cpp&quot;))</span></a>
+<a class="sourceLine" id="cb6-9" data-line-number="9">  x &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(x)</a>
+<a class="sourceLine" id="cb6-10" data-line-number="10">  n &lt;-<span class="st"> </span><span class="kw">nrow</span>(x)</a>
+<a class="sourceLine" id="cb6-11" data-line-number="11">  p &lt;-<span class="st"> </span><span class="kw">ncol</span>(x)</a>
+<a class="sourceLine" id="cb6-12" data-line-number="12">  <span class="co">#centring and scaling</span></a>
+<a class="sourceLine" id="cb6-13" data-line-number="13">  ybar&lt;-<span class="kw">mean</span>(y)</a>
+<a class="sourceLine" id="cb6-14" data-line-number="14">  yc&lt;-y<span class="op">-</span>ybar</a>
+<a class="sourceLine" id="cb6-15" data-line-number="15">  <span class="cf">if</span>(center<span class="op">==</span>T){</a>
+<a class="sourceLine" id="cb6-16" data-line-number="16">    <span class="cf">if</span>(scale<span class="op">==</span>T){</a>
+<a class="sourceLine" id="cb6-17" data-line-number="17">      xc&lt;-x</a>
+<a class="sourceLine" id="cb6-18" data-line-number="18">    }</a>
+<a class="sourceLine" id="cb6-19" data-line-number="19">    <span class="cf">else</span>{</a>
+<a class="sourceLine" id="cb6-20" data-line-number="20">      xc&lt;-<span class="kw">scale</span>(x,<span class="dt">scale=</span>T)</a>
+<a class="sourceLine" id="cb6-21" data-line-number="21">    }</a>
+<a class="sourceLine" id="cb6-22" data-line-number="22">  }</a>
+<a class="sourceLine" id="cb6-23" data-line-number="23">  <span class="cf">else</span>{</a>
+<a class="sourceLine" id="cb6-24" data-line-number="24">    <span class="cf">if</span>(scale<span class="op">==</span>T){</a>
+<a class="sourceLine" id="cb6-25" data-line-number="25">      xc&lt;-<span class="kw">scale</span>(x,<span class="dt">center =</span> T,<span class="dt">scale =</span> F)</a>
+<a class="sourceLine" id="cb6-26" data-line-number="26">    }</a>
+<a class="sourceLine" id="cb6-27" data-line-number="27">    <span class="cf">else</span>{</a>
+<a class="sourceLine" id="cb6-28" data-line-number="28">      xc&lt;-<span class="kw">scale</span>(x,<span class="dt">center =</span> T,<span class="dt">scale =</span> F) </a>
+<a class="sourceLine" id="cb6-29" data-line-number="29">    }</a>
+<a class="sourceLine" id="cb6-30" data-line-number="30">  }</a>
+<a class="sourceLine" id="cb6-31" data-line-number="31">  xbar&lt;-<span class="kw">apply</span>(x,<span class="dv">2</span>,mean)</a>
+<a class="sourceLine" id="cb6-32" data-line-number="32">  xtx&lt;-<span class="kw">t</span>(xc)<span class="op">%*%</span>xc</a>
+<a class="sourceLine" id="cb6-33" data-line-number="33">  xty&lt;-<span class="kw">t</span>(xc)<span class="op">%*%</span>yc</a>
+<a class="sourceLine" id="cb6-34" data-line-number="34">  <span class="co"># initial</span></a>
+<a class="sourceLine" id="cb6-35" data-line-number="35">  beta &lt;-<span class="st"> </span><span class="kw">drop</span>(<span class="kw">ginv</span>(xtx)<span class="op">%*%</span>xty)</a>
+<a class="sourceLine" id="cb6-36" data-line-number="36">  resid &lt;-<span class="st"> </span>yc <span class="op">-</span><span class="st"> </span>xc <span class="op">%*%</span><span class="st"> </span>beta</a>
+<a class="sourceLine" id="cb6-37" data-line-number="37">  sigma2 &lt;-<span class="st"> </span>(<span class="kw">t</span>(resid) <span class="op">%*%</span><span class="st"> </span>resid)<span class="op">/</span>(n<span class="op">-</span>p)</a>
+<a class="sourceLine" id="cb6-38" data-line-number="38">  tauinv2 &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">/</span><span class="st"> </span>(beta <span class="op">*</span><span class="st"> </span>beta)</a>
+<a class="sourceLine" id="cb6-39" data-line-number="39">  lambda &lt;-<span class="st"> </span>p <span class="op">*</span><span class="st"> </span><span class="kw">sqrt</span>(sigma2) <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(<span class="kw">abs</span>(beta))</a>
+<a class="sourceLine" id="cb6-40" data-line-number="40">  <span class="co">#the loglike function prepare for the mento carlo EM</span></a>
+<a class="sourceLine" id="cb6-41" data-line-number="41">  L0 &lt;-<span class="st"> </span>p<span class="op">*</span><span class="kw">log</span>(lambda<span class="op">^</span><span class="dv">2</span>)<span class="op">-</span>lambda<span class="op">^</span><span class="dv">2</span><span class="op">/</span><span class="dv">2</span><span class="op">*</span><span class="kw">sum</span>(<span class="dv">1</span><span class="op">/</span>tauinv2) </a>
+<a class="sourceLine" id="cb6-42" data-line-number="42">  Beta &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">0</span>, n.max, p)</a>
+<a class="sourceLine" id="cb6-43" data-line-number="43">  Sigma2 &lt;-<span class="st"> </span><span class="kw">numeric</span>(n.max)</a>
+<a class="sourceLine" id="cb6-44" data-line-number="44">  Tau2 &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">0</span>, n.max, p)</a>
+<a class="sourceLine" id="cb6-45" data-line-number="45">  Lambda &lt;-<span class="st"> </span><span class="kw">numeric</span>(n.max)</a>
+<a class="sourceLine" id="cb6-46" data-line-number="46">  <span class="co"># gibbs sampling</span></a>
+<a class="sourceLine" id="cb6-47" data-line-number="47">  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n.max){</a>
+<a class="sourceLine" id="cb6-48" data-line-number="48">    Dinv &lt;-<span class="st"> </span><span class="kw">diag</span>(tauinv2)</a>
+<a class="sourceLine" id="cb6-49" data-line-number="49">    Ainv &lt;-<span class="st"> </span><span class="kw">ginv</span>(xtx <span class="op">+</span><span class="st"> </span>Dinv)</a>
+<a class="sourceLine" id="cb6-50" data-line-number="50">    beta.m &lt;-<span class="st"> </span>Ainv <span class="op">%*%</span><span class="st"> </span>xty</a>
+<a class="sourceLine" id="cb6-51" data-line-number="51">    Sigma &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(sigma2) <span class="op">*</span><span class="st"> </span>Ainv</a>
+<a class="sourceLine" id="cb6-52" data-line-number="52">    <span class="co"># update beta</span></a>
+<a class="sourceLine" id="cb6-53" data-line-number="53">    <span class="cf">if</span>(<span class="kw">det</span>(Sigma)<span class="op">&lt;</span><span class="fl">0.001</span>){</a>
+<a class="sourceLine" id="cb6-54" data-line-number="54">      beta &lt;-<span class="st"> </span><span class="kw">rmvnorm</span>(<span class="dv">1</span>, beta.m, Sigma, <span class="st">&quot;svd&quot;</span>) <span class="co"># for we can consider the matrix is singular</span></a>
+<a class="sourceLine" id="cb6-55" data-line-number="55">    } <span class="cf">else</span>{</a>
+<a class="sourceLine" id="cb6-56" data-line-number="56">      beta &lt;-<span class="st"> </span><span class="kw">rmvnorm</span>(<span class="dv">1</span>, beta.m, Sigma, <span class="st">&quot;chol&quot;</span>)</a>
+<a class="sourceLine" id="cb6-57" data-line-number="57">    }</a>
+<a class="sourceLine" id="cb6-58" data-line-number="58">    Beta[i,]&lt;-beta</a>
+<a class="sourceLine" id="cb6-59" data-line-number="59">    <span class="co"># update sigma2</span></a>
+<a class="sourceLine" id="cb6-60" data-line-number="60">    sig.a &lt;-<span class="st"> </span>(n<span class="dv">-1</span>)<span class="op">/</span><span class="dv">2</span><span class="op">+</span>p<span class="op">/</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb6-61" data-line-number="61">    resid &lt;-<span class="st"> </span>yc <span class="op">-</span><span class="st"> </span>xc <span class="op">%*%</span><span class="st"> </span><span class="kw">t</span>(beta)</a>
+<a class="sourceLine" id="cb6-62" data-line-number="62">    sig.b &lt;-<span class="st"> </span><span class="kw">t</span>(resid) <span class="op">%*%</span><span class="st"> </span>resid<span class="op">/</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>beta<span class="op">%*%</span><span class="st"> </span>Dinv<span class="op">%*%</span><span class="st"> </span><span class="kw">t</span>(beta)<span class="op">/</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb6-63" data-line-number="63">    sigma2 &lt;-<span class="st"> </span><span class="kw">rigamma</span>(<span class="dv">1</span>, <span class="dt">alpha=</span>sig.a, <span class="dt">beta=</span>sig.b) </a>
+<a class="sourceLine" id="cb6-64" data-line-number="64">    Sigma2[i] &lt;-<span class="st"> </span>sigma2</a>
+<a class="sourceLine" id="cb6-65" data-line-number="65">    <span class="co"># update tau2</span></a>
+<a class="sourceLine" id="cb6-66" data-line-number="66">    beta&lt;-<span class="kw">as.vector</span>(beta)</a>
+<a class="sourceLine" id="cb6-67" data-line-number="67">    mu.t&lt;-<span class="kw">numeric</span>(p)</a>
+<a class="sourceLine" id="cb6-68" data-line-number="68">    <span class="cf">for</span>(k <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>p){</a>
+<a class="sourceLine" id="cb6-69" data-line-number="69">      mu.t[k]&lt;-<span class="kw">sqrt</span>(lambda<span class="op">^</span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span>sigma2 <span class="op">/</span><span class="st"> </span>beta[k]<span class="op">^</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb6-70" data-line-number="70">    }</a>
+<a class="sourceLine" id="cb6-71" data-line-number="71">    lambda.t &lt;-<span class="st"> </span>lambda<span class="op">^</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb6-72" data-line-number="72">    tauinv2 &lt;-<span class="st"> </span><span class="kw">rinvgauss</span>(p, <span class="dt">mean=</span>mu.t, <span class="dt">shape=</span>lambda.t)</a>
+<a class="sourceLine" id="cb6-73" data-line-number="73">    Tau2[i, ] &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">/</span>tauinv2</a>
+<a class="sourceLine" id="cb6-74" data-line-number="74">    <span class="cf">if</span>(E<span class="op">==</span>T){</a>
+<a class="sourceLine" id="cb6-75" data-line-number="75">      tol&lt;-<span class="dv">10</span><span class="op">^</span>(<span class="op">-</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb6-76" data-line-number="76">      lambda&lt;-<span class="kw">EmpiricalBayes</span>(L0,tol,tauinv2,p,lambda)[<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb6-77" data-line-number="77">      L0&lt;-<span class="kw">EmpiricalBayes</span>(L0,tol,tauinv2,p,lambda)[<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb6-78" data-line-number="78">    }</a>
+<a class="sourceLine" id="cb6-79" data-line-number="79">    <span class="cf">else</span>{</a>
+<a class="sourceLine" id="cb6-80" data-line-number="80">      lambda&lt;-<span class="kw">HyperpriorBayes</span>(tauinv2,r,d,p)</a>
+<a class="sourceLine" id="cb6-81" data-line-number="81">    }</a>
+<a class="sourceLine" id="cb6-82" data-line-number="82">    Lambda[i]&lt;-lambda</a>
+<a class="sourceLine" id="cb6-83" data-line-number="83">  }</a>
+<a class="sourceLine" id="cb6-84" data-line-number="84">  </a>
+<a class="sourceLine" id="cb6-85" data-line-number="85">  </a>
+<a class="sourceLine" id="cb6-86" data-line-number="86">  <span class="kw">list</span>(<span class="dt">beta=</span><span class="kw">round</span>(<span class="kw">apply</span>(Beta[<span class="kw">seq</span>(<span class="kw">round</span>(n.max<span class="op">/</span><span class="dv">2</span>), n.max),],<span class="dv">2</span>, median),<span class="dv">3</span>),</a>
+<a class="sourceLine" id="cb6-87" data-line-number="87">       <span class="dt">tau2=</span><span class="kw">round</span>(<span class="kw">apply</span>(Tau2[<span class="kw">seq</span>(<span class="kw">round</span>(n.max<span class="op">/</span><span class="dv">2</span>), n.max),],<span class="dv">2</span>,  median),<span class="dv">3</span>),</a>
+<a class="sourceLine" id="cb6-88" data-line-number="88">       <span class="dt">sigma2=</span><span class="kw">round</span>(<span class="kw">median</span>(Sigma2[<span class="kw">seq</span>(<span class="kw">round</span>(n.max<span class="op">/</span><span class="dv">2</span>), n.max)]),<span class="dv">3</span>),</a>
+<a class="sourceLine" id="cb6-89" data-line-number="89">       <span class="dt">lambda=</span><span class="kw">round</span>(<span class="kw">median</span>(Lambda[<span class="kw">seq</span>(<span class="kw">round</span>(n.max<span class="op">/</span><span class="dv">2</span>), n.max)]),<span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb6-90" data-line-number="90">}</a></code></pre></div>
+</div>
+<div id="compare" class="section level2">
+<h2>Compare</h2>
+<p>We compare <strong>BayesianLasso</strong> function with the blasso in “monomvn”, which use MCMC method to get the estimate of beta.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">result&lt;-<span class="kw">BayesianLasso</span>(Data<span class="op">$</span>diabetes.x,Data<span class="op">$</span>diabetes.y,T,T)</a></code></pre></div>
+<pre><code>## 载入需要的程辑包：mvtnorm</code></pre>
+<pre><code>## 载入需要的程辑包：pscl</code></pre>
+<pre><code>## Classes and Methods for R developed in the
+## Political Science Computational Laboratory
+## Department of Political Science
+## Stanford University
+## Simon Jackman
+## hurdle and zeroinfl functions by Achim Zeileis</code></pre>
+<pre><code>## 载入需要的程辑包：statmod</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">proc.time</span>()</a></code></pre></div>
+<pre><code>##    用户    系统    流逝 
+## 439.195  14.773 451.661</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">resid&lt;-Data<span class="op">$</span>diabetes.y<span class="op">-</span><span class="kw">mean</span>(Data<span class="op">$</span>diabetes.y)<span class="op">-</span>Data<span class="op">$</span>diabetes.x<span class="op">%*%</span>result<span class="op">$</span>beta</a>
+<a class="sourceLine" id="cb14-2" data-line-number="2">n&lt;-<span class="kw">nrow</span>(Data<span class="op">$</span>diabetes.x)</a>
+<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="kw">t</span>(resid)<span class="op">%*%</span>resid<span class="op">/</span>n</a></code></pre></div>
+<pre><code>##          [,1]
+## [1,] 2877.779</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">library</span>(monomvn)</a></code></pre></div>
+<pre><code>## 载入需要的程辑包：pls</code></pre>
+<pre><code>## 
+## 载入程辑包：'pls'</code></pre>
+<pre><code>## The following object is masked from 'package:bootstrap':
+## 
+##     crossval</code></pre>
+<pre><code>## The following object is masked from 'package:stats':
+## 
+##     loadings</code></pre>
+<pre><code>## 载入需要的程辑包：lars</code></pre>
+<pre><code>## Loaded lars 1.2</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">n.max=<span class="fl">1e4</span></a>
+<a class="sourceLine" id="cb23-2" data-line-number="2">result1&lt;-<span class="kw">blasso</span>(Data<span class="op">$</span>diabetes.x,Data<span class="op">$</span>diabetes.y,<span class="dt">T=</span><span class="dv">10000</span>)</a></code></pre></div>
+<pre><code>## t=100, m=6
+## t=200, m=7
+## t=300, m=8
+## t=400, m=8
+## t=500, m=6
+## t=600, m=8
+## t=700, m=9
+## t=800, m=6
+## t=900, m=9
+## t=1000, m=8
+## t=1100, m=7
+## t=1200, m=6
+## t=1300, m=8
+## t=1400, m=6
+## t=1500, m=7
+## t=1600, m=8
+## t=1700, m=7
+## t=1800, m=8
+## t=1900, m=6
+## t=2000, m=8
+## t=2100, m=6
+## t=2200, m=5
+## t=2300, m=7
+## t=2400, m=6
+## t=2500, m=6
+## t=2600, m=6
+## t=2700, m=7
+## t=2800, m=6
+## t=2900, m=6
+## t=3000, m=6
+## t=3100, m=8
+## t=3200, m=7
+## t=3300, m=8
+## t=3400, m=8
+## t=3500, m=6
+## t=3600, m=8
+## t=3700, m=7
+## t=3800, m=6
+## t=3900, m=6
+## t=4000, m=6
+## t=4100, m=7
+## t=4200, m=6
+## t=4300, m=7
+## t=4400, m=7
+## t=4500, m=6
+## t=4600, m=7
+## t=4700, m=7
+## t=4800, m=6
+## t=4900, m=6
+## t=5000, m=7
+## t=5100, m=8
+## t=5200, m=8
+## t=5300, m=8
+## t=5400, m=7
+## t=5500, m=6
+## t=5600, m=10
+## t=5700, m=7
+## t=5800, m=7
+## t=5900, m=7
+## t=6000, m=7
+## t=6100, m=7
+## t=6200, m=8
+## t=6300, m=6
+## t=6400, m=7
+## t=6500, m=6
+## t=6600, m=7
+## t=6700, m=7
+## t=6800, m=6
+## t=6900, m=9
+## t=7000, m=8
+## t=7100, m=8
+## t=7200, m=7
+## t=7300, m=9
+## t=7400, m=6
+## t=7500, m=7
+## t=7600, m=6
+## t=7700, m=7
+## t=7800, m=6
+## t=7900, m=10
+## t=8000, m=8
+## t=8100, m=7
+## t=8200, m=6
+## t=8300, m=6
+## t=8400, m=8
+## t=8500, m=8
+## t=8600, m=7
+## t=8700, m=6
+## t=8800, m=7
+## t=8900, m=7
+## t=9000, m=7
+## t=9100, m=7
+## t=9200, m=8
+## t=9300, m=9
+## t=9400, m=6
+## t=9500, m=8
+## t=9600, m=7
+## t=9700, m=5
+## t=9800, m=6
+## t=9900, m=6</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw">proc.time</span>()</a></code></pre></div>
+<pre><code>##    用户    系统    流逝 
+## 442.306  14.795 454.795</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">result2&lt;-<span class="kw">round</span>(<span class="kw">apply</span>(result1<span class="op">$</span>beta[<span class="kw">seq</span>(<span class="kw">round</span>(n.max<span class="op">/</span><span class="dv">2</span>), n.max),],<span class="dv">2</span>, median),<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb27-2" data-line-number="2">result2</a></code></pre></div>
+<pre><code>##      b.1      b.2      b.3      b.4      b.5      b.6      b.7      b.8 
+##    0.000 -199.013  529.025  306.944  -68.590    0.000 -212.938    0.000 
+##      b.9     b.10 
+##  507.953    0.000</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">resid&lt;-Data<span class="op">$</span>diabetes.y<span class="op">-</span><span class="kw">mean</span>(Data<span class="op">$</span>diabetes.y)<span class="op">-</span>Data<span class="op">$</span>diabetes.x<span class="op">%*%</span>result2</a>
+<a class="sourceLine" id="cb29-2" data-line-number="2">n&lt;-<span class="kw">nrow</span>(Data<span class="op">$</span>diabetes.x)</a>
+<a class="sourceLine" id="cb29-3" data-line-number="3"><span class="kw">t</span>(resid)<span class="op">%*%</span>resid<span class="op">/</span>n</a></code></pre></div>
+<pre><code>##          [,1]
+## [1,] 2901.038</code></pre>
+</div>
+<div id="bayespredmse" class="section level2">
+<h2>Bayespredmse</h2>
+<p>This function is build to generate a prediction (if pred =T) or MSE (if pred = F). The code is as follows:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">Bayespredmse&lt;-<span class="cf">function</span>(x,y,<span class="dt">x1=</span><span class="kw">as.matrix</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>), <span class="dt">center =</span> T, <span class="dt">scale =</span> T,</a>
+<a class="sourceLine" id="cb31-2" data-line-number="2">                                        <span class="dt">n.max=</span><span class="dv">10000</span>,<span class="dt">E=</span><span class="ot">TRUE</span>,<span class="dt">r=</span><span class="dv">1</span>,<span class="dt">d=</span><span class="dv">1</span>,<span class="dt">pred =</span> T){</a>
+<a class="sourceLine" id="cb31-3" data-line-number="3">  <span class="cf">if</span>(pred<span class="op">==</span>T){</a>
+<a class="sourceLine" id="cb31-4" data-line-number="4">    beta&lt;-<span class="kw">BayesianLasso</span>(x,y,center,scale,n.max,E,r,d)<span class="op">$</span>beta</a>
+<a class="sourceLine" id="cb31-5" data-line-number="5">    <span class="cf">if</span>(center<span class="op">==</span>T){</a>
+<a class="sourceLine" id="cb31-6" data-line-number="6">      <span class="cf">if</span>(scale<span class="op">==</span>T){</a>
+<a class="sourceLine" id="cb31-7" data-line-number="7">        xc&lt;-x1</a>
+<a class="sourceLine" id="cb31-8" data-line-number="8">      }</a>
+<a class="sourceLine" id="cb31-9" data-line-number="9">      <span class="cf">else</span>{</a>
+<a class="sourceLine" id="cb31-10" data-line-number="10">        xc&lt;-<span class="kw">scale</span>(x1,<span class="dt">scale=</span>T)</a>
+<a class="sourceLine" id="cb31-11" data-line-number="11">      }</a>
+<a class="sourceLine" id="cb31-12" data-line-number="12">    }</a>
+<a class="sourceLine" id="cb31-13" data-line-number="13">    <span class="cf">else</span>{</a>
+<a class="sourceLine" id="cb31-14" data-line-number="14">      <span class="cf">if</span>(scale<span class="op">==</span>T){</a>
+<a class="sourceLine" id="cb31-15" data-line-number="15">        xc&lt;-<span class="kw">scale</span>(x1,<span class="dt">center =</span> T,<span class="dt">scale =</span> F)</a>
+<a class="sourceLine" id="cb31-16" data-line-number="16">      }</a>
+<a class="sourceLine" id="cb31-17" data-line-number="17">      <span class="cf">else</span>{</a>
+<a class="sourceLine" id="cb31-18" data-line-number="18">        xc&lt;-<span class="kw">scale</span>(x1,<span class="dt">center =</span> T,<span class="dt">scale =</span> F) </a>
+<a class="sourceLine" id="cb31-19" data-line-number="19">      }</a>
+<a class="sourceLine" id="cb31-20" data-line-number="20">    }</a>
+<a class="sourceLine" id="cb31-21" data-line-number="21">    ypred&lt;-xc<span class="op">%*%</span>beta</a>
+<a class="sourceLine" id="cb31-22" data-line-number="22">    <span class="kw">return</span>(ypred)</a>
+<a class="sourceLine" id="cb31-23" data-line-number="23">  }</a>
+<a class="sourceLine" id="cb31-24" data-line-number="24">  <span class="cf">else</span>{</a>
+<a class="sourceLine" id="cb31-25" data-line-number="25">    n&lt;-<span class="kw">nrow</span>(x)</a>
+<a class="sourceLine" id="cb31-26" data-line-number="26">    yc&lt;-y<span class="op">-</span><span class="kw">mean</span>(y)</a>
+<a class="sourceLine" id="cb31-27" data-line-number="27">    result&lt;-<span class="kw">BayesianLasso</span>(x,y,center,scale,n.max,E,r,d)</a>
+<a class="sourceLine" id="cb31-28" data-line-number="28">    <span class="cf">if</span>(center<span class="op">==</span>T){</a>
+<a class="sourceLine" id="cb31-29" data-line-number="29">      <span class="cf">if</span>(scale<span class="op">==</span>T){</a>
+<a class="sourceLine" id="cb31-30" data-line-number="30">        xc&lt;-x</a>
+<a class="sourceLine" id="cb31-31" data-line-number="31">      }</a>
+<a class="sourceLine" id="cb31-32" data-line-number="32">      <span class="cf">else</span>{</a>
+<a class="sourceLine" id="cb31-33" data-line-number="33">        xc&lt;-<span class="kw">scale</span>(x,<span class="dt">scale=</span>T)</a>
+<a class="sourceLine" id="cb31-34" data-line-number="34">      }</a>
+<a class="sourceLine" id="cb31-35" data-line-number="35">    }</a>
+<a class="sourceLine" id="cb31-36" data-line-number="36">    <span class="cf">else</span>{</a>
+<a class="sourceLine" id="cb31-37" data-line-number="37">      <span class="cf">if</span>(scale<span class="op">==</span>T){</a>
+<a class="sourceLine" id="cb31-38" data-line-number="38">        xc&lt;-<span class="kw">scale</span>(x,<span class="dt">center =</span> T,<span class="dt">scale =</span> F)</a>
+<a class="sourceLine" id="cb31-39" data-line-number="39">      }</a>
+<a class="sourceLine" id="cb31-40" data-line-number="40">      <span class="cf">else</span>{</a>
+<a class="sourceLine" id="cb31-41" data-line-number="41">        xc&lt;-<span class="kw">scale</span>(x,<span class="dt">center =</span> T,<span class="dt">scale =</span> F) </a>
+<a class="sourceLine" id="cb31-42" data-line-number="42">      }</a>
+<a class="sourceLine" id="cb31-43" data-line-number="43">    }</a>
+<a class="sourceLine" id="cb31-44" data-line-number="44">    resid&lt;-yc<span class="op">-</span>xc<span class="op">%*%</span>result<span class="op">$</span>beta</a>
+<a class="sourceLine" id="cb31-45" data-line-number="45">    mse1&lt;-<span class="kw">t</span>(resid)<span class="op">%*%</span>resid<span class="op">/</span>n</a>
+<a class="sourceLine" id="cb31-46" data-line-number="46">    <span class="kw">return</span>(mse1)</a>
+<a class="sourceLine" id="cb31-47" data-line-number="47">  }</a>
+<a class="sourceLine" id="cb31-48" data-line-number="48">}</a></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1">x&lt;-Data<span class="op">$</span>diabetes.x</a>
+<a class="sourceLine" id="cb32-2" data-line-number="2">y&lt;-Data<span class="op">$</span>diabetes.y</a>
+<a class="sourceLine" id="cb32-3" data-line-number="3"><span class="kw">Bayespredmse</span>(x,y,<span class="dt">pred =</span> F)</a></code></pre></div>
+<pre><code>##          [,1]
+## [1,] 2877.676</code></pre>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
