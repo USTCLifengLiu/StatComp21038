@@ -7,7 +7,7 @@ Author: Lifeng Liu
 Maintainer: Lifeng Liu <cqllfustc@mail.ustc.edu.cn>
 Description: This package write a BayesianLasso function to solve the Bayesian Lasso Regression Problem by gibbs sampling.
 License: GPL (>= 2)
-Imports: Rcpp (>= 1.0.7), MASS, mvtnorm, pscl, statmod, monomvn, stats, graphics, boot, bootstrap, energy, Ball, RANN, datasets, parallel, microbenchmark
+Imports: Rcpp, MASS, mvtnorm, pscl, statmod, monomvn, stats, graphics, boot, bootstrap, energy, Ball, RANN, datasets, parallel, microbenchmark
 LinkingTo: Rcpp
 Suggests: knitr, rmarkdown
 VignetteBuilder: knitr
