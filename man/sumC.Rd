@@ -19,7 +19,7 @@ A function that can sum the value of a vector
 }
 \examples{
 \dontrun{
-r<-as.numeric(-1,-2,3)
+r<-c(-1,-2,3)
 p<-length(r)
 sumC(r,p)
 }
