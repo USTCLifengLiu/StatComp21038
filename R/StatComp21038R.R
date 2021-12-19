@@ -201,6 +201,7 @@ NULL
 #' y<-Data$diabetes.y
 #' Bayespredmse(x,y,pred=F)
 #' }
+#' @export
 
 Bayespredmse<-function(x,y,x1=as.matrix(0,1,1),center = T, scale = T,n.max=10000,E=TRUE,r=1,d=1,pred = T){
   if(pred==T){
