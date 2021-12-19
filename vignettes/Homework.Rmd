@@ -1055,8 +1055,8 @@ sk<-function(x,i){# statistic
   m2<-mean((x[i]-meanx)^2)
   return(m3/m2^1.5)
 }
-m<-2000# number of mento carlo
-n<-100# number of random variables
+m<-200# number of mento carlo
+n<-10# number of random variables
 sktests1<-numeric(m)# normal
 sktests1left<-numeric(m)# the mean < the left of normal
 sktests2<-numeric(m)# basic
@@ -1102,8 +1102,8 @@ round(c(normal=right_rate1,basic=right_rate2,percentile=right_rate3),4)
 $\quad \therefore$对于标准正态分布结果如上所示，下面对$\mathcal{X}^2(5)$来进行实现：
 
 ```{r}
-m<-2000# number of mento carlo
-n<-100# number of random variables
+m<-200# number of mento carlo
+n<-10# number of random variables
 sktests1<-numeric(m)# normal
 sktests1left<-numeric(m)# the mean < the left of normal
 sktests2<-numeric(m)# basic
@@ -2020,7 +2020,7 @@ $\because$由题可知，参考sapply以及mcapply的代码，我们可以结合
 library(parallel)
 sapply
 ```
-```{r}
+```{r,eval = FALSE}
 mcsapply<-function(X, FUN, ..., mc.preschedule = TRUE, mc.set.seed = TRUE, 
     mc.silent = FALSE, mc.cores = getOption("mc.cores", 2L), 
     mc.cleanup = TRUE, mc.allow.recursive = TRUE, affinity.list = NULL, 
