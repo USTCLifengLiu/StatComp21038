@@ -37,7 +37,7 @@ NumericMatrix gibbsC(int N, int thin) {
 //' @return a double value
 //' @examples
 //' \dontrun{
-//' r<-as.numeric(-1,-2,3)
+//' r<-c(-1,-2,3)
 //' p<-length(r)
 //' sumC(r,p)
 //' }
