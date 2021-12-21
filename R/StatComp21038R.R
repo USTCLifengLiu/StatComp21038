@@ -89,7 +89,7 @@ BayesianLasso<-function(x,y,center = T, scale = T,a=1, b=1, n.max=10000,E=TRUE,r
   beta <- drop(ginv(xtx)%*%xty)
   resid <- yc - xc %*% beta
   sigma2 <- (t(resid) %*% resid)/(n-p)
-  tauinv2 <- 1 / (beta * beta)
+  tauinv2 <- 1 / rep(sigma2,p)
   lambda <- p * sqrt(sigma2) / sum(abs(beta))
   #the loglike function prepare for the mento carlo EM
   L0 <- p*log(lambda^2)-lambda^2/2*sum(1/tauinv2) 
@@ -112,8 +112,8 @@ BayesianLasso<-function(x,y,center = T, scale = T,a=1, b=1, n.max=10000,E=TRUE,r
     Beta[i,]<-beta
     # update sigma2
     a0 <- (n-1)/2+p/2+a
-    resid <- yc - xc %*% t(beta)+b
-    b0 <- t(resid) %*% resid/2 + beta%*% Dinv%*% t(beta)/2
+    resid <- yc - xc %*% t(beta)
+    b0 <- t(resid) %*% resid/2 + beta%*% Dinv%*% t(beta)/2+b
     sigma2 <- rigamma(1, alpha=a0, beta=b0) #change inv-gamma function#
     Sigma2[i] <- sigma2
     # update tau2
