@@ -53,7 +53,7 @@ NumericVector EmpiricalBayes(double L0, double tol, NumericVector tauinv2, int p
     double L1;
     double L2;
     lambda1 = sqrt((p*2)/sumC(1/tauinv2,p));
-    L1 = Q(lambda,tauinv2,p);
+    L1 = loglikeli(lambda,tauinv2,p);
     if(abs(L0-L1)>tol){
         lambda2 = lambda1;
         L2 = L1;
@@ -88,7 +88,7 @@ double HyperpriorBayes(NumericVector tauinv2, int r, int d, int p){
 The parameter center=T and scale=T means the data has already been centered and scaled and do not need to be centered and scaled anymore. The R code of this function is as follows:
 
 ```{r,eval = TRUE}
-BayesianLasso<-function(x,y,center = T, scale = T,n.max=10000,E=TRUE,r=1,d=1){
+BayesianLasso<-function(x,y,center = T, scale = T,a=1,b=1,n.max=10000,E=TRUE,r=1,d=1){
   #beginning
   require("MASS")    # for the inverse of matrix
   require("mvtnorm") #multivarate normal
@@ -147,10 +147,10 @@ BayesianLasso<-function(x,y,center = T, scale = T,n.max=10000,E=TRUE,r=1,d=1){
     }
     Beta[i,]<-beta
     # update sigma2
-    sig.a <- (n-1)/2+p/2
-    resid <- yc - xc %*% t(beta)
-    sig.b <- t(resid) %*% resid/2 + beta%*% Dinv%*% t(beta)/2
-    sigma2 <- rigamma(1, alpha=sig.a, beta=sig.b) 
+    a0 <- (n-1)/2+p/2+a
+    resid <- yc - xc %*% t(beta)+b
+    b0 <- t(resid) %*% resid/2 + beta%*% Dinv%*% t(beta)/2
+    sigma2 <- rigamma(1, alpha=a0, beta=b0) 
     Sigma2[i] <- sigma2
     # update tau2
     beta<-as.vector(beta)
@@ -185,7 +185,7 @@ BayesianLasso<-function(x,y,center = T, scale = T,n.max=10000,E=TRUE,r=1,d=1){
 We compare __BayesianLasso__ function with the blasso in "monomvn", which use MCMC method to get the estimate of beta.
 
 ```{r}
-result<-BayesianLasso(Data$diabetes.x,Data$diabetes.y,T,T)
+result<-BayesianLasso(Data$diabetes.x,Data$diabetes.y,T,T,0,0)
 proc.time()
 ```
 ```{r}
@@ -214,9 +214,9 @@ This function is build to generate a prediction (if pred =T) or MSE (if pred = F
 
 ```{r}
 Bayespredmse<-function(x,y,x1=as.matrix(0,1,1), center = T, scale = T,
-                                        n.max=10000,E=TRUE,r=1,d=1,pred = T){
+                                        a=1,b=1,n.max=10000,E=TRUE,r=1,d=1,pred = T){
   if(pred==T){
-    beta<-BayesianLasso(x,y,center,scale,n.max,E,r,d)$beta
+    beta<-BayesianLasso(x,y,center,scale,a,b,n.max,E,r,d)$beta
     if(center==T){
       if(scale==T){
         xc<-x1
@@ -239,7 +239,7 @@ Bayespredmse<-function(x,y,x1=as.matrix(0,1,1), center = T, scale = T,
   else{
     n<-nrow(x)
     yc<-y-mean(y)
-    result<-BayesianLasso(x,y,center,scale,n.max,E,r,d)
+    result<-BayesianLasso(x,y,center,scale,a,b,n.max,E,r,d)
     if(center==T){
       if(scale==T){
         xc<-x
@@ -267,7 +267,7 @@ Bayespredmse<-function(x,y,x1=as.matrix(0,1,1), center = T, scale = T,
 ```{r}
 x<-Data$diabetes.x
 y<-Data$diabetes.y
-Bayespredmse(x,y,pred = F)
+Bayespredmse(x,y,a=0,b=0,pred = F)
 ```
 
 
