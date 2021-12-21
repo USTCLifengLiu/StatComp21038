@@ -9,6 +9,8 @@ BayesianLasso(
   y,
   center = T,
   scale = T,
+  a=1,
+  b=1,
   n.max = 10000,
   E = TRUE,
   r = 1,
@@ -23,6 +25,8 @@ BayesianLasso(
 \item{center}{TRUE/FALSE (default: TRUE, if the design matrix x has been centered)}
 
 \item{scale}{TRUE/FALSE (default: TRUE, if the design matrix x has been scaled)}
+                         
+\item{a, b}{}
 
 \item{n.max}{n of interations (default: 10000)}
 
@@ -48,7 +52,7 @@ data(Data)
 attach(Data)
 x<-Data$diabetes.x
 y<-Data$diabetes.y
-BayesianLasso(x,y)
+BayesianLasso(x,y,a=0,b=0)
 }
 }
 \references{
