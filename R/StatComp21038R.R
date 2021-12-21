@@ -16,6 +16,7 @@ NULL
 #' @param y response variable
 #' @param center TRUE/FALSE (default: TRUE, if the design matrix x has been centered) 
 #' @param scale TRUE/FALSE (default: TRUE, if the design matrix x has been scaled)
+#' @param a,b parameter of sigma2's prior, default 1,1, if a=0,b=0, means the prior of sigma2 is 1/sigma2
 #' @param n.max n of interations (default: 10000)
 #' @param E TRUE/FALSE (default: TRUE, estimating lambda by empircal bayes; FALSE, estimating lambda by Hyperprior method.)
 #' @param r,d hyper-Gamma prior for lambda^2 if E = FALSE
@@ -51,7 +52,7 @@ NULL
 #' @importFrom knitr kable
 #' @useDynLib StatComp21038 
 #' @export 
-BayesianLasso<-function(x,y,center = T, scale = T,n.max=10000,E=TRUE,r=1,d=1){
+BayesianLasso<-function(x,y,center = T, scale = T,a=1, b=1, n.max=10000,E=TRUE,r=1,d=1){
   #beginning
   #require("MASS")    # for the inverse of matrix
   #require("mvtnorm") #multivarate normal
@@ -110,10 +111,10 @@ BayesianLasso<-function(x,y,center = T, scale = T,n.max=10000,E=TRUE,r=1,d=1){
     }
     Beta[i,]<-beta
     # update sigma2
-    sig.a <- (n-1)/2+p/2
-    resid <- yc - xc %*% t(beta)
-    sig.b <- t(resid) %*% resid/2 + beta%*% Dinv%*% t(beta)/2
-    sigma2 <- rigamma(1, alpha=sig.a, beta=sig.b) #change inv-gamma function#
+    a0 <- (n-1)/2+p/2+a
+    resid <- yc - xc %*% t(beta)+b
+    b0 <- t(resid) %*% resid/2 + beta%*% Dinv%*% t(beta)/2
+    sigma2 <- rigamma(1, alpha=a0, beta=b0) #change inv-gamma function#
     Sigma2[i] <- sigma2
     # update tau2
     beta<-as.vector(beta)
@@ -187,6 +188,7 @@ NULL
 #' @param x1 a matrix which should be given if pred = T
 #' @param center TRUE/FALSE (default: TRUE, if the design matrix x has been centered) 
 #' @param scale TRUE/FALSE (default: TRUE, if the design matrix x has been scaled)
+#' @param a,b parameter of sigma2's prior, default 1,1
 #' @param n.max n of interations (default: 10000)
 #' @param E TRUE/FALSE (default: TRUE, estimating lambda by empircal bayes; FALSE, estimating lambda by Hyperprior method.)
 #' @param r,d hyper-Gamma prior for lambda^2 if E = FALSE
@@ -203,9 +205,9 @@ NULL
 #' }
 #' @export
 
-Bayespredmse<-function(x,y,x1=as.matrix(0,1,1),center = T, scale = T,n.max=10000,E=TRUE,r=1,d=1,pred = T){
+Bayespredmse<-function(x,y,x1=as.matrix(0,1,1),center = T, scale = T,a=1,b=1,n.max=10000,E=TRUE,r=1,d=1,pred = T){
   if(pred==T){
-    beta<-BayesianLasso(x,y,center,scale,n.max,E,r,d)$beta
+    beta<-BayesianLasso(x,y,center,scale,a,b,n.max,E,r,d)$beta
     if(center==T){
       if(scale==T){
         xc<-x1
@@ -228,7 +230,7 @@ Bayespredmse<-function(x,y,x1=as.matrix(0,1,1),center = T, scale = T,n.max=10000
   else{
     n<-nrow(x)
     yc<-y-mean(y)
-    result<-BayesianLasso(x,y,center,scale,n.max,E,r,d)
+    result<-BayesianLasso(x,y,center,scale,a,b,n.max,E,r,d)
     if(center==T){
       if(scale==T){
         xc<-x
