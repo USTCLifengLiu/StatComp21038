@@ -10,6 +10,8 @@ Bayespredmse(
   x1 = as.matrix(0, 1, 1),
   center = T,
   scale = T,
+  a = 1,
+  b = 1,
   n.max = 10000,
   E = TRUE,
   r = 1,
@@ -27,6 +29,8 @@ Bayespredmse(
 \item{center}{TRUE/FALSE (default: TRUE, if the design matrix x has been centered)}
 
 \item{scale}{TRUE/FALSE (default: TRUE, if the design matrix x has been scaled)}
+                         
+\item{a,b}{parameter of sigma2's prior, default 1,1}
 
 \item{n.max}{n of interations (default: 10000)}
 
@@ -50,7 +54,7 @@ data(Data)
 attach(Data)
 x<-Data$diabetes.x
 y<-Data$diabetes.y
-Bayespredmse(x,y,pred=F)
+Bayespredmse(x,y,a=0,b=0,pred=F)
 }
 }
 \references{
