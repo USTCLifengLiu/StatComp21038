@@ -26,7 +26,7 @@ BayesianLasso(
 
 \item{scale}{TRUE/FALSE (default: TRUE, if the design matrix x has been scaled)}
                          
-\item{a, b}{}
+\item{a, b}{parameter of sigma2's prior, default 1,1, if a=0,b=0, means the prior of sigma2 is 1/sigma2}
 
 \item{n.max}{n of interations (default: 10000)}
 
